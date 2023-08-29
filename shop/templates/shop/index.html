@@ -1,46 +1,51 @@
 {% extends 'shop/basic.html' %}
 {% block css %}
-          .col-md-3
-          {
-          display: inline-block;
-          margin-left:-4px;
-          }
+    .col-md-3
+    {
+    display: inline-block;
+    margin-left:-4px;
+    }
 
-          .carousel-indicators .active {
-          background-color: blue;
-            }
+    .carousel-indicators .active {
+    background-color: blue;
+      }
 
-          .col-md-3 img{
+    .col-md-3 img{
 
-          width: 170px;
-          height: 200px;
-          }
+    width: 170px;
+    height: 200px;
+    }
 
-          body .carousel-indicator li{
-          background-color: blue;
-          }
+    body .carousel-indicator li{
+    background-color: blue;
+    }
 
-          body .carousel-indicators{
-          bottom: 0;
-          }
+    body .carousel-indicators{
+    bottom: 0;
+    }
 
-          body .carousel-control-prev-icon,
-          body .carousel-control-next-icon{
-          background-color: blue;
-          }
+    body .carousel-control-prev-icon,
+    body .carousel-control-next-icon{
+    background-color: blue;
+    }
 
-          .carousel-control-prev,
-          .carousel-control-next{
-          top: auto;
-          bottom: auto;
-          padding-top: 222px;
-          }
-           body .no-padding{
-           padding-left: 0,
-           padding-right: 0;
-           }
- {% endblock %}
-
+    .carousel-control-prev,
+    .carousel-control-next{
+    top: auto;
+    bottom: auto;
+    padding-top: 222px;
+    }
+    body .no-padding{
+    padding-left: 0,
+    padding-right: 0;
+    }
+    .card-text, .card-title{
+      white-space: nowrap; 
+      width: 250px; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+    }
+{% endblock %}
 {% block body %}
 {% load static %}
 <div class="container">
@@ -60,10 +65,7 @@
 
 
     <div class="container carousel-inner no-padding">
-
       <div class="carousel-item active">
-
-
         {% for i in product %}
         <div class="col-xs-3 col-sm-3 col-md-3">
           <div class="card" style="width: 18rem;">
@@ -72,6 +74,7 @@
               <h5 class="card-title">{{i.product_name}}</h5>
               <p class="card-text">{{i.desc}}</p>
               <button id="pr{{i.id}}" class="btn btn-primary cart">Add To Cart</button>
+              <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="btn btn-primary cart">Quick View</button></a>
             </div>
           </div>
         </div>
@@ -124,5 +127,7 @@ console.log(cart);
 localStorage.setItem('cart', JSON.stringify(cart));
 document.getElementById('cart').innerHTML = Object.keys(cart).length;
 });
+$('#popcart').popover();
+document.getElementById("popcart").setAttribute('data-content', '<h5>Cart for your items in my shopping cart</h5>');
 </script>
 {% endblock %}
