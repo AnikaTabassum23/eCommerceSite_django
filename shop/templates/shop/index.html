@@ -138,8 +138,8 @@ text-overflow: ellipsis;
           popStr = popStr + "<b>" + i + "</b>. ";
           popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] + '<br>';
           i = i+1;
-      }
-      popStr = popStr + "</div>" 
+      } 
+      popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-primary' id ='checkout'>Checkout</button></a> <button class='btn btn-primary' onclick='clearCart()' id ='clearCart'>Clear Cart</button>     "
       document.getElementById('popcart').setAttribute('data-content', popStr);
       $('#popcart').popover('show');
   }
