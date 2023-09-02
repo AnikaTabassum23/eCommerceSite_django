@@ -85,12 +85,8 @@ text-overflow: ellipsis;
         </div>
         <div class="carousel-item">
           {% endif %}
-
           {% endfor %}
         </div>
-
-
-
       </div>
     </div>
     <!-- left and right controls for the slide -->
@@ -163,7 +159,8 @@ text-overflow: ellipsis;
     localStorage.clear();
     cart = {};
     updateCart(cart);
-}
+  }
+
 
   // If plus or minus button is clicked, change the cart as well as the display value
   $('.divpr').on("click", "button.minus", function() {
@@ -178,6 +175,17 @@ text-overflow: ellipsis;
       cart['pr' + a] = cart['pr' + a] + 1;
       document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
       updateCart(cart);
+  });
+  // If the add to cart button is clicked, add/increment the item
+  // $('.cart').click(function() {
+  $('.divpr').on('click', 'button.cart', function(){
+    var idstr = this.id.toString();
+    if (cart[idstr] != undefined) {
+        cart[idstr] = cart[idstr] + 1;
+    } else {
+        cart[idstr] = 1;
+    }
+    updateCart(cart);
   });
 </script>
 {% endblock %}
